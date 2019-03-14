@@ -19,12 +19,16 @@ class JegsSpider(scrapy.Spider):
 	  'https://www.jegs.com/i/Chevrolet-Performance/809/12681432/10002/-1',
 	  'https://www.jegs.com//i/Chevrolet-Performance/809/12681432/10002/-1?NttInput=12530282',
     ]
-	# Recieve data and display
+	# Function identifies desired data by CSS selectors and Concatenates.
     def parse(self, response):
         part = PartItem()
         part['name'] = response.css('h1.productItemName::text').extract()
         part['price'] = response.css('div#price::text').extract()
         part['partNumber'] = response.css('span#product_id::text').extract()
-        part['url'] = response.url
-        yield part
-        pass
+        # Concatenates data
+	part['url'] = response.url
+       
+	# Returns Generator. "Returns Data"
+	yield part
+        # Manditory place holder
+	pass
