@@ -20,7 +20,7 @@ class KarlSpider(scrapy.Spider):
     def parse(self, response):
         part = PartItem()
         part['name'] = response.css('h3.title::text').extract()
-        part['price'] = response.css('h1.lpprice::text').extract()
+        part['price'] = response.css('h1.lpprice.d-none.d-md-block::text').extract()
         part['partNumber'] = response.css('h4.lppartno::text').extract()
         part['url'] = response.url
         yield part
